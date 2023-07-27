@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -53,4 +54,21 @@ class UserTest extends TestCase
         
         $this->assertTrue($userA != $userB);
     }
+
+    /**
+     * Test Register User 
+     * 
+     * @test
+     */
+    public function userRegistration()
+    {   
+        $password = Hash::make("password");
+        $response = $this->post("/register",[
+            'name' => 'I Am Noob',
+            'email' => 'iamnoob@gmail.com',
+            'password' => $password,
+            'password_confirmation' => $password
+        ]);
+        $response->assertRedirect("/home");
+    }   
 }
