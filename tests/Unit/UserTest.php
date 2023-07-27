@@ -71,4 +71,19 @@ class UserTest extends TestCase
         ]);
         $response->assertRedirect("/home");
     }   
+
+    /**
+     * Check Existing User
+     *
+     * @test
+     */
+    public function existingUser()
+    {
+        $this->assertDatabaseHas('users',[
+            'name' => 'I Am Noob'
+        ]);
+        $this->assertDatabaseMissing('users',[
+            'name' => "John Wick"
+        ]);
+    }
 }
