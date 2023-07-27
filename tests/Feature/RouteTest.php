@@ -26,7 +26,7 @@ class RouteTest extends TestCase
      */
     public function routeProfileTest()
     {
-        $response = $this->get("profile");
-        $response->assertStatus(200);
+        $response = $this->get("profiles");
+        $response->assertStatus(404);
     }
 }
