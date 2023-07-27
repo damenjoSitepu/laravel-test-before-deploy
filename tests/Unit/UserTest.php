@@ -86,4 +86,15 @@ class UserTest extends TestCase
             'name' => "John Wick"
         ]);
     }
+    
+    /**
+     * User Seeding Test
+     *
+     * @test
+     */
+    public function letsSeed()
+    {
+        $this->seed();
+        $this->assertTrue(true);
+    }
 }
