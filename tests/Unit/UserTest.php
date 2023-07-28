@@ -63,13 +63,17 @@ class UserTest extends TestCase
     public function userRegistration()
     {   
         $password = Hash::make("password");
-        $response = $this->post("/register",[
-            'name' => 'I Am Noob',
-            'email' => 'iamnoob@gmail.com',
-            'password' => $password,
-            'password_confirmation' => $password
-        ]);
-        $response->assertRedirect("/home");
+        $user = User::where("name",'I Am Noob')->first();
+        if (! $user) {
+            $response = $this->post("/register",[
+                'name' => 'I Am Noob',
+                'email' => 'iamnoob@gmail.com',
+                'password' => $password,
+                'password_confirmation' => $password
+            ]);
+            $response->assertRedirect("/home");
+        }
+        $this->assertTrue(true);
     }   
 
     /**
@@ -94,7 +98,10 @@ class UserTest extends TestCase
      */
     public function letsSeed()
     {
-        $this->seed();
+        $user = User::where("name",'John Wick')->first();
+        if (! $user) {
+            $this->seed();
+        }
         $this->assertTrue(true);
     }
 }

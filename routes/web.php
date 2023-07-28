@@ -32,3 +32,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Products Page
+Route::get("/products",[\App\Http\Controllers\Product\ViewController::class,"main"])->name("products");
